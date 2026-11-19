@@ -1,0 +1,117 @@
+.modal {
+  position: fixed; inset: 0; z-index: 200;
+  display: grid; place-items: center;
+  padding: var(--space-6);
+}
+.modal__overlay {
+  position: absolute; inset: 0;
+  background: var(--glass-fill-dark);
+  -webkit-backdrop-filter: blur(var(--blur-lg)); backdrop-filter: blur(var(--blur-lg));
+}
+html.no-glass .modal__overlay { -webkit-backdrop-filter: none; backdrop-filter: none; background: rgba(21,22,10,.72); /* = --hole */ }
+.modal__panel {
+  position: relative; width: min(1160px, 100%); height: min(90vh, 980px);
+  overflow: hidden; transform-origin: 50% 50%;
+  will-change: transform, opacity;
+}
+.modal__scroll {
+  position: relative; z-index: 1;
+  height: 100%; overflow-y: auto; overscroll-behavior: contain;
+  padding: var(--space-8) var(--space-8) var(--space-9);
+}
+.modal__close { position: absolute !important; top: var(--space-5); right: var(--space-5); z-index: 5; }
+
+/* Обложка кейса — бумажный лист на скотче */
+.case-cover {
+  position: relative; isolation: isolate;
+  max-width: 780px; margin: 0 auto var(--space-9);
+  padding: var(--space-7) var(--space-7) var(--space-6);
+  padding-right: 168px;
+  background: var(--sand);
+  border-radius: var(--radius-xs); box-shadow: var(--shadow-lifted);
+  transform: rotate(-1deg);
+  text-shadow: none;
+}
+.case-cover__meta { color: var(--ink-muted); margin-bottom: var(--space-3); }
+.case-cover .t-h2 { color: var(--ink); }
+.case-cover__row { display: flex; align-items: center; gap: var(--space-5); margin-top: var(--space-5); flex-wrap: wrap; }
+.case-cover__year { color: var(--ink-muted); }
+.case-badge {
+  display: inline-block; padding: var(--space-2) var(--space-4);
+  color: var(--ink); text-transform: uppercase; letter-spacing: .04em;
+  border: 2px solid var(--kraft); outline: 1px solid var(--kraft); outline-offset: 3px;
+  border-radius: var(--radius-xs); transform: rotate(-2deg);
+}
+.case-cover__stamp { position: absolute; top: var(--space-6); right: var(--space-6); }
+
+/* Макет и выноски */
+.case-mock { position: relative; aspect-ratio: 1.9; margin: 0 auto var(--space-8); max-width: 1040px; }
+.case-mock__stage { position: absolute; inset: 0; }
+.case-mock__img {
+  position: absolute; left: 24%; width: 52%; top: 50%; transform: translateY(-50%);
+  aspect-ratio: 16 / 10; object-fit: cover;
+  border-radius: var(--radius-md); box-shadow: var(--shadow-lifted);
+}
+.case-mock__lines { position: absolute; inset: 0; overflow: visible; pointer-events: none; }
+.case-mock__lines polyline {
+  fill: none; stroke: var(--kraft); stroke-width: 1.25; stroke-linejoin: miter;
+  stroke-dasharray: 1; stroke-dashoffset: 1;
+  transition: stroke-dashoffset 900ms var(--ease-out);
+}
+.is-drawn .case-mock__lines polyline { stroke-dashoffset: 0; }
+.case-mock__dot {
+  position: absolute; width: 7px; height: 7px; margin: -3.5px 0 0 -3.5px;
+  border-radius: var(--radius-full); background: var(--kraft);
+  opacity: 0; transition: opacity 200ms var(--ease-out);
+}
+.is-drawn .case-mock__dot { opacity: 1; }
+
+.callouts { position: absolute; inset: 0; pointer-events: none; }
+.callout { position: absolute; width: 21%; transform: translateY(-50%); opacity: 0; transition: opacity 300ms var(--ease-out); }
+.callout--l { right: 78%; }
+.callout--r { left: 78%; }
+.is-drawn .callout { opacity: 1; }
+.callout__box { display: grid; gap: var(--space-1); padding: var(--space-3) var(--space-4); pointer-events: auto; }
+.callout__key { color: var(--ink-muted); }
+.callout__value { display: flex; align-items: center; gap: var(--space-2); font: 600 14px/1.4 var(--font-body); color: var(--ink); }
+.callout__swatch { flex: none; width: 14px; height: 14px; border-radius: var(--radius-full); box-shadow: 0 0 0 1px var(--hairline); }
+
+/* Палитра */
+.case-palette { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--space-5); margin-bottom: var(--space-8); }
+.case-palette li { display: grid; justify-items: center; gap: var(--space-2); color: var(--ink-muted); }
+.case-palette__chip { width: 48px; height: 48px; border-radius: var(--radius-full); box-shadow: 0 0 0 1px var(--hairline), var(--shadow-paper); }
+
+/* Галерея: горизонтальный свайп */
+.case-gallery { margin: 0 calc(-1 * var(--space-8)) var(--space-7); }
+.case-gallery__track {
+  display: flex; gap: var(--space-5); overflow-x: auto;
+  padding: var(--space-3) var(--space-8) var(--space-5);
+  scroll-snap-type: x mandatory; scroll-padding-inline: var(--space-8);
+  scrollbar-width: thin; scrollbar-color: var(--stone) transparent;
+}
+.case-gallery__item { flex: 0 0 min(68%, 640px); scroll-snap-align: start; }
+.case-gallery__item img {
+  width: 100%; aspect-ratio: 16 / 10; object-fit: cover;
+  border-radius: var(--radius-md); box-shadow: var(--shadow-paper);
+}
+.case-desc { max-width: 680px; margin: 0 auto; color: var(--ink); text-shadow: none; }
+
+@media (max-width: 899px) {
+  .case-mock { aspect-ratio: auto; }
+  .case-mock__stage { position: relative; }
+  .case-mock__img { position: static; width: 100%; transform: none; }
+  .case-mock__lines, .case-mock__dot { display: none; }
+  .callouts { position: static; display: grid; gap: var(--space-3); margin-top: var(--space-5); }
+  .callout { position: static; width: auto; transform: none; opacity: 1; }
+}
+@media (max-width: 767px) {
+  .modal { padding: var(--space-2); }
+  .modal__panel { height: calc(100svh - 16px); }
+  .modal__scroll { padding: var(--space-9) var(--space-4) var(--space-8); }
+  .modal__close { top: var(--space-3); right: var(--space-3); }
+  .case-cover { padding: var(--space-6) var(--space-4) var(--space-5); padding-right: var(--space-4); margin-bottom: var(--space-7); }
+  .case-cover__stamp { position: relative; top: auto; right: auto; margin-top: var(--space-4); width: 84px; height: 84px; }
+  .case-gallery { margin-inline: calc(-1 * var(--space-4)); }
+  .case-gallery__track { padding-inline: var(--space-4); scroll-padding-inline: var(--space-4); }
+  .case-gallery__item { flex-basis: 86%; }
+}

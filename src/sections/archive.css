@@ -1,0 +1,32 @@
+.archive {
+  margin: var(--space-9) var(--sheet-inset) var(--sheet-inset);
+  padding: var(--space-9) var(--sheet-pad) var(--space-9);
+  min-height: 80vh;
+}
+.archive__inner { position: relative; }
+.archive__head { display: flex; align-items: baseline; gap: var(--space-5); flex-wrap: wrap; margin-bottom: var(--space-9); }
+.archive__count { color: var(--ink-muted); }
+.archive__row {
+  display: flex; flex-wrap: wrap; justify-content: center;
+  gap: var(--space-9) var(--space-3);
+  padding-top: var(--space-7);
+}
+.archive__row .folder { transition: transform 420ms var(--ease-out), filter 420ms var(--ease-out); }
+/* остальные папки темнеют на 8% */
+.archive__row:has(.folder:hover, .folder:focus-visible) .folder:not(:hover):not(:focus-visible) { filter: brightness(.92); }
+.archive__note { margin-top: var(--space-8); text-align: center; color: var(--kraft-deep); }
+
+@media (max-width: 767px) {
+  .archive { margin: var(--space-8) var(--space-3) var(--space-3); padding: var(--space-8) var(--sheet-pad); min-height: 0; }
+  .archive__head { margin-bottom: var(--space-5); }
+  .archive__row {
+    flex-wrap: nowrap; justify-content: flex-start; overflow-x: auto;
+    scroll-snap-type: x mandatory; gap: var(--space-5);
+    padding: var(--space-7) var(--space-4) var(--space-5);
+    margin: 0 calc(-1 * var(--sheet-pad));
+    scrollbar-width: none;
+  }
+  .archive__row::-webkit-scrollbar { display: none; }
+  .archive__row > li { scroll-snap-align: center; }
+  .archive__note { display: none; }
+}

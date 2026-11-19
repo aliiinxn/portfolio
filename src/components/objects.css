@@ -1,0 +1,94 @@
+/* ================= Folder ================= */
+.folder {
+  position: relative; flex: none;
+  width: 230px; height: 190px;
+  text-align: left;
+  transition: transform 420ms var(--ease-out), filter 420ms var(--ease-out);
+  -webkit-tap-highlight-color: transparent;
+}
+.folder:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; border-radius: var(--radius-lg); }
+.folder__tab {
+  position: absolute; left: 2px; top: 0; z-index: 1;
+  width: 46%; height: 34px;
+  padding: 8px 6px 0 10px;
+  border-radius: var(--radius-sm) 0 0 0;
+  clip-path: polygon(0 0, calc(100% - 22px) 0, 100% 100%, 0 100%);
+  white-space: nowrap; overflow: hidden;
+}
+.folder__tab .t-caption { display: block; overflow: hidden; text-overflow: ellipsis; }
+.folder__back {
+  position: absolute; left: 2px; right: 2px; top: 26px; bottom: 0; z-index: 1;
+  border-radius: 0 var(--radius-lg) var(--radius-lg) var(--radius-lg);
+  box-shadow: inset 0 2px 0 rgba(255,255,255,.9), inset 0 -3px 0 rgba(21,22,10,.25);
+}
+.folder__sheets { position: absolute; left: 18px; right: 18px; top: 40px; height: 110px; z-index: 2; }
+.folder__sheet {
+  position: absolute; inset: 0;
+  padding: 6px; background: var(--paper-light);
+  border-radius: var(--radius-xs); box-shadow: var(--shadow-paper);
+  transition: transform 420ms var(--ease-out);
+}
+.folder__sheet img { width: 100%; height: 100%; object-fit: cover; border-radius: var(--radius-xs); }
+.folder__sheet--0 { transform: translate(-4px, 4px) rotate(-2deg); }
+.folder__sheet--1 { transform: translate(6px, 0) rotate(1.5deg); transition-delay: 60ms; }
+.folder__sheet--2 { transform: translate(0, 8px) rotate(-.5deg); transition-delay: 120ms; }
+.folder__front {
+  position: absolute; left: 0; right: 0; bottom: 0; height: 112px; z-index: 3;
+  display: flex; flex-direction: column; gap: var(--space-1);
+  padding: var(--space-4) var(--space-4) var(--space-3);
+  border-radius: var(--radius-lg);
+}
+.folder__front::after {
+  content: ''; position: absolute; inset: 3px; border-radius: calc(var(--radius-lg) - 3px);
+  border: 1px solid rgba(255,255,255,.55); pointer-events: none;
+}
+.folder__title {
+  font-family: var(--font-heading); font-weight: 600; font-size: 19px; line-height: 1.15; letter-spacing: -0.01em;
+  display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+}
+
+.folder:hover, .folder:focus-visible { transform: translateY(-18px) rotate(-1deg); }
+.folder:hover .folder__sheet--0, .folder:focus-visible .folder__sheet--0 { transform: translate(-10px, -40px) rotate(-4deg); }
+.folder:hover .folder__sheet--1, .folder:focus-visible .folder__sheet--1 { transform: translate(8px, -54px) rotate(3deg); }
+.folder:hover .folder__sheet--2, .folder:focus-visible .folder__sheet--2 { transform: translate(0, -30px) rotate(-1deg); }
+
+/* ================= Laptop ================= */
+.laptop {
+  position: relative; display: block; width: 100%;
+  transition: transform 260ms var(--ease-out);
+  -webkit-tap-highlight-color: transparent;
+}
+.laptop:hover, .laptop:focus-visible { transform: scale(1.04); }
+.laptop:focus-visible { outline: 2px solid var(--ink); outline-offset: 6px; border-radius: var(--radius-md); }
+.laptop__screen {
+  display: block; position: relative;
+  padding: 3.2% 3.2% 2.6%;
+  background: var(--ink);
+  border-radius: var(--radius-md) var(--radius-md) var(--radius-xs) var(--radius-xs);
+  box-shadow: var(--shadow-lifted);
+}
+.laptop__screen img { width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; border-radius: var(--radius-xs); background: var(--stone); }
+.laptop__base {
+  display: block; position: relative; height: 0; padding-bottom: 4.2%;
+  margin: 0 -7%;
+  background: linear-gradient(180deg, var(--stone), var(--stone) 55%, var(--chrome-mid));
+  border-radius: var(--radius-xs) var(--radius-xs) var(--radius-md) var(--radius-md);
+  box-shadow: var(--shadow-paper);
+}
+.laptop__notch {
+  position: absolute; left: 50%; top: 0; width: 16%; height: 40%; transform: translateX(-50%);
+  background: var(--chrome-mid); border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+}
+.laptop__caption {
+  position: absolute; left: 50%; top: calc(100% + var(--space-4));
+  display: flex; flex-direction: column; gap: var(--space-1);
+  width: max-content; max-width: 360px; padding: var(--space-4) var(--space-5);
+  text-align: left;
+  opacity: 0; visibility: hidden; transform: translate(-50%, 8px);
+  transition: opacity 240ms var(--ease-out), transform 240ms var(--ease-out), visibility 0s linear 240ms;
+  pointer-events: none;
+}
+/* visibility: чтобы скрытые подписи не держали лишние слои backdrop-filter */
+.laptop:hover .laptop__caption, .laptop:focus-visible .laptop__caption {
+  opacity: 1; visibility: visible; transform: translate(-50%, 0); transition-delay: 0s;
+}

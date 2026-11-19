@@ -1,0 +1,102 @@
+# Админка сайта. Вход — через GitHub.
+backend:
+  name: github
+  repo: GITHUB_USER/portfolio   # ← заменить на ваш логин/репозиторий
+  branch: main
+  commit_messages:
+    update: 'Правка: {{slug}}'
+    create: 'Новый проект: {{slug}}'
+    delete: 'Удалён проект: {{slug}}'
+    uploadMedia: 'Загружен файл {{path}}'
+
+locale: ru
+media_folder: public/uploads
+public_folder: /uploads
+display_url: /
+
+collections:
+  - name: settings
+    label: Обо мне и контакты
+    editor: { preview: false }
+    files:
+      - name: site
+        label: Данные сайта
+        file: content/site.json
+        format: json
+        fields:
+          - { name: firstName, label: Имя, widget: string }
+          - { name: lastName, label: Фамилия, widget: string }
+          - { name: role, label: 'Слово с рамкой выделения (обложка)', widget: string, hint: 'например: дизайнер' }
+          - { name: specialization, label: Специализация, widget: string }
+          - { name: location, label: 'Город / формат работы', widget: string }
+          - { name: year, label: Год, widget: string }
+          - { name: experience, label: 'Опыт (стикер)', widget: string, hint: 'например: 1 год · 5 проектов' }
+          - { name: about, label: 'Текст «Обо мне» (2–3 предложения)', widget: text }
+          - { name: photo, label: 'Фото для коллажа (вертикальное 3:4)', widget: image }
+          - { name: photoAlt, label: 'Описание фото (для незрячих)', widget: string }
+          - name: stickers
+            label: Стикеры вокруг фото
+            label_singular: стикер
+            widget: list
+            min: 3
+            max: 7
+            summary: '{{fields.label}} — {{fields.text}}'
+            fields:
+              - { name: label, label: 'Метка (мелким капсом)', widget: string }
+              - { name: text, label: 'Текст от руки (3–8 слов)', widget: string }
+          - { name: ctaTitle, label: 'Финал: заголовок-призыв', widget: string }
+          - { name: ctaText, label: 'Финал: одно предложение', widget: string }
+          - { name: telegram, label: 'Telegram (ник без @)', widget: string }
+          - { name: email, label: Почта, widget: string }
+          - { name: behance, label: 'Behance (ссылка)', widget: string }
+          - { name: instagram, label: 'Instagram (ник без @)', widget: string }
+          - { name: pdf, label: 'PDF-портфолио', widget: file, required: false }
+
+  - name: projects
+    label: Проекты
+    label_singular: проект
+    folder: content/projects
+    format: json
+    extension: json
+    create: true
+    delete: true
+    slug: '{{num}}'
+    identifier_field: title
+    summary: '{{num}} · {{title}} ({{category}}, {{year}})'
+    sortable_fields: [num, year, title]
+    editor: { preview: false }
+    fields:
+      - { name: num, label: 'Номер дела (01, 02…) — задаёт порядок', widget: string, pattern: ['^\d{2,3}$', 'Две цифры, например 06'] }
+      - { name: title, label: Название, widget: string }
+      - name: category
+        label: Категория
+        widget: select
+        options: [Айдентика, Веб-дизайн, Соцсети, Конструктор сайтов]
+      - { name: tab, label: 'Подпись на язычке папки (до 9 букв, необязательно)', widget: string, required: false }
+      - { name: year, label: Год, widget: string }
+      - { name: featured, label: 'Показывать в ленте «Избранное»', widget: boolean, default: true }
+      - { name: main, label: 'Главный макет (экран ноутбука, 16:10)', widget: image }
+      - name: previews
+        label: 'Листы-превью в папке (2–3)'
+        widget: list
+        min: 1
+        max: 3
+        field: { name: image, label: Картинка, widget: image }
+      - { name: badge, label: 'Главный результат (штамп), например +40% охвата', widget: string }
+      - { name: fonts, label: Шрифты, widget: string }
+      - name: colors
+        label: 'Цвета проекта (HEX, 3–5)'
+        widget: list
+        min: 1
+        max: 5
+        field: { name: hex, label: HEX, widget: color }
+      - { name: grid, label: Сетка, widget: string }
+      - { name: task, label: Задача, widget: text }
+      - { name: result, label: Результат, widget: text }
+      - name: gallery
+        label: 'Галерея (4–10 изображений)'
+        widget: list
+        min: 1
+        max: 10
+        field: { name: image, label: Картинка, widget: image }
+      - { name: description, label: Описание, widget: text }

@@ -1,0 +1,50 @@
+/* ============ Альбом: листы на кольцах (Обложка, Обо мне, Избранное) ============ */
+.album__sheet {
+  --pad-l: calc(var(--rings-zone) - var(--sheet-left-px) + var(--sheet-pad));
+  margin: var(--sheet-inset) var(--sheet-inset) var(--sheet-inset) var(--sheet-left-px);
+  min-height: calc(100vh - 2 * var(--sheet-inset));
+  min-height: calc(100svh - 2 * var(--sheet-inset));
+  padding: var(--sheet-pad) var(--sheet-pad) var(--sheet-pad) var(--pad-l);
+  transform-origin: calc(var(--hole-x) + var(--hole-size) / 2) 50%;
+  overflow: clip; /* огромное слово и т.п. не создают горизонтальный скролл */
+}
+.sheet-shade {
+  position: absolute; inset: 0; z-index: 20; pointer-events: none; opacity: 0;
+  border-radius: inherit;
+  background: linear-gradient(90deg, rgba(21,22,10,.24), rgba(21,22,10,.08) 45%, rgba(21,22,10,0) 80%);
+}
+
+/* Режим «альбома» — тот же запрос, что STAGE_QUERY в lib/motion.ts */
+@media (min-width: 768px) and (min-height: 600px) and (prefers-reduced-motion: no-preference) {
+  .album__stage {
+    position: relative; height: 100vh; overflow: hidden;
+    perspective: 2400px; perspective-origin: 0% 50%;
+  }
+  .album__sheet {
+    position: absolute; margin: 0; min-height: 0;
+    top: var(--sheet-inset); bottom: var(--sheet-inset);
+    left: var(--sheet-left-px); right: var(--sheet-inset);
+    overflow: hidden;
+    backface-visibility: hidden; -webkit-backface-visibility: hidden;
+    will-change: transform;
+  }
+  #cover { z-index: 3; }
+  #about { z-index: 2; }
+  #featured { z-index: 1; }
+}
+
+/* планшет: контент начинается ниже навигации */
+@media (min-width: 768px) and (max-width: 1199px) {
+  #about, #featured { padding-top: var(--space-9); }
+}
+
+@media (max-width: 767px) {
+  .album__sheet {
+    margin: var(--space-4) var(--space-3) var(--space-5);
+    padding: calc(var(--rings-zone) + var(--space-3)) var(--sheet-pad) var(--space-7);
+    transform-origin: 50% 0;
+  }
+}
+
+/* повёрнутые при перелистывании листы не должны давать горизонтальный скролл */
+.album, #main { overflow-x: clip; }

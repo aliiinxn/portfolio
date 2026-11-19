@@ -1,0 +1,78 @@
+.final {
+  position: relative; overflow: hidden;
+  background: var(--ink); color: var(--paper);
+  padding: var(--space-10) var(--sheet-pad) var(--space-8);
+  min-height: 100vh;
+}
+.final__scene {
+  position: relative; max-width: var(--content-max); margin: 0 auto;
+  display: flex; flex-direction: column; align-items: center;
+}
+
+/* Свет из-за папки */
+.final__glow {
+  position: absolute; top: -6%; left: 50%; width: 70%; height: 60%;
+  transform: translateX(-50%);
+  background: radial-gradient(closest-side, rgba(242,240,234,.22), rgba(242,240,234,0));
+  filter: blur(40px); mix-blend-mode: screen; pointer-events: none;
+}
+
+.final__cover {
+  position: relative; z-index: 2;
+  width: min(100%, 1000px); aspect-ratio: 1000 / 560;
+  border-radius: var(--radius-lg);
+}
+.final__works {
+  position: absolute; inset: 8px; overflow: hidden; border-radius: var(--radius-md);
+  background: var(--ink-muted);
+  transform: scale(1.04);
+  transition: transform 300ms var(--ease-out);
+}
+.final__works img {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+  opacity: 0; transition: opacity 1400ms var(--ease-out);
+}
+.final__works img.is-on { opacity: 1; }
+.final__card { position: relative; width: 100%; height: 100%; }
+.final__kraft { fill: var(--kraft); }
+.final__shadow { flood-color: var(--ink); }
+
+/* Луч: трапеция мягкого света, как из приоткрытой двери */
+.final__beam-wrap {
+  position: absolute; z-index: 1; left: 50%; top: calc(min(100%, 1000px) * 0.5); transform: translateX(-50%);
+  width: min(140%, 1400px); height: 1000px; pointer-events: none;
+  filter: blur(30px); mix-blend-mode: screen; /* blur на обёртке — иначе clip-path срезает размытие */
+}
+.final__beam {
+  position: absolute; inset: 0;
+  clip-path: polygon(38% 0, 62% 0, 100% 100%, 0 100%);
+  background: linear-gradient(180deg, rgba(242,240,234,.30) 0%, rgba(242,240,234,.12) 45%, rgba(242,240,234,0) 85%);
+  transition: transform 300ms var(--ease-out);
+}
+
+.final__content {
+  position: relative; z-index: 3;
+  display: grid; justify-items: center; gap: var(--space-5);
+  max-width: 760px; margin-top: var(--space-8); text-align: center;
+}
+.final__content .t-h2, .final__content .t-body-l { color: var(--paper); }
+.final__contacts { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--space-3) var(--space-6); }
+.final__contacts a { color: var(--paper); text-decoration: none; border-bottom: 1px solid rgba(210,210,209,.4); padding-bottom: 2px; transition: border-color 200ms var(--ease-out); }
+.final__contacts a:hover { border-color: var(--paper); }
+.final__contacts span { opacity: .8; margin-right: var(--space-1); font-weight: 500; }
+.final__actions { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--space-4); margin-top: var(--space-3); }
+.final :focus-visible { outline-color: var(--paper); }
+
+.site-footer {
+  background: var(--ink); color: var(--stone);
+  padding: var(--space-6) var(--sheet-pad) var(--space-7);
+  text-align: center;
+}
+
+@media (max-width: 767px) {
+  .final { padding: var(--space-9) var(--space-4) var(--space-7); min-height: 0; }
+  .final__content { margin-top: var(--space-7); }
+  .final__actions { flex-direction: column; width: 100%; }
+  .final__actions .btn { width: 100%; }
+  .final__contacts { flex-direction: column; align-items: center; }
+}

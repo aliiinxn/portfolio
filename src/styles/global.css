@@ -1,0 +1,162 @@
+@import './tokens.css';
+
+/* ---------- @property: плавные CSS-переменные для transform-анимаций ---------- */
+@property --spread { syntax: '<number>'; inherits: true; initial-value: 1; }
+@property --hover { syntax: '<number>'; inherits: true; initial-value: 0; }
+
+/* ---------- Reset ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+html { -webkit-text-size-adjust: 100%; }
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: hidden; }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+img, svg { display: block; max-width: 100%; }
+button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
+a { color: inherit; }
+h1, h2, h3, p, ul, figure { margin: 0; }
+ul { padding: 0; list-style: none; }
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+.skip-link {
+  position: fixed; left: var(--space-4); top: var(--space-4); z-index: 1000;
+  transform: translateY(-200%);
+}
+.skip-link:focus { transform: none; }
+
+/* ---------- Фокус ---------- */
+:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
+.on-dark :focus-visible { outline-color: var(--paper); }
+
+/* ---------- Типографика ---------- */
+.t-h1 {
+  font-family: var(--font-heading); font-weight: 800;
+  font-size: 96px; line-height: .95; letter-spacing: -0.03em;
+}
+.t-display {
+  font-family: var(--font-heading); font-weight: 300;
+  font-size: 96px; line-height: .95; letter-spacing: -0.03em;
+}
+.t-h2 {
+  font-family: var(--font-heading); font-weight: 600;
+  font-size: 56px; line-height: 1.05; letter-spacing: -0.02em;
+}
+.t-h3 {
+  font-family: var(--font-heading); font-weight: 600;
+  font-size: 28px; line-height: 1.2; letter-spacing: -0.01em;
+}
+.t-body-l { font-family: var(--font-body); font-weight: 400; font-size: 20px; line-height: 1.6; }
+.t-body { font-family: var(--font-body); font-weight: 400; font-size: 16px; line-height: 1.6; }
+.t-label { font-family: var(--font-body); font-weight: 600; font-size: 14px; line-height: 1.4; }
+.t-caption {
+  font-family: var(--font-body); font-weight: 500;
+  font-size: 12px; line-height: 1.4; letter-spacing: .08em; text-transform: uppercase;
+}
+.t-caption--13 { font-size: 13px; }
+.t-sticker { font-family: var(--font-hand); font-weight: 500; font-size: 26px; line-height: 1.2; }
+.t-note { font-family: var(--font-hand); font-weight: 600; font-size: 20px; line-height: 1.2; }
+
+@media (max-width: 767px) {
+  .t-h1, .t-display { font-size: 48px; }
+  .t-h2 { font-size: 32px; }
+  .t-h3 { font-size: 22px; }
+  .t-body-l { font-size: 18px; }
+  .t-sticker { font-size: 22px; }
+}
+
+/* ---------- Материал: БУМАГА ---------- */
+.paper-grid {
+  background-color: var(--paper);
+  background-image: radial-gradient(var(--hairline) 1px, transparent 1.2px);
+  background-size: 24px 24px;
+}
+.tape {
+  position: absolute; width: 80px; height: 20px;
+  background: rgba(242,240,234,.6);
+  box-shadow: 0 1px 2px rgba(21,22,10,.10);
+  pointer-events: none;
+}
+
+/* ---------- Материал: СТЕКЛО (толстое, с фаской) ---------- */
+.glass {
+  position: relative;
+  background:
+    linear-gradient(160deg, rgba(255,255,255,.30), rgba(242,240,234,.10) 45%, rgba(21,22,10,.06)),
+    var(--glass-fill);
+  -webkit-backdrop-filter: blur(var(--blur-md)) saturate(1.1);
+  backdrop-filter: blur(var(--blur-md)) saturate(1.1);
+  border: 1px solid var(--glass-edge);
+  box-shadow: var(--shadow-glass-thick);
+  border-radius: var(--radius-md);
+  color: var(--ink);
+  text-shadow: var(--text-emboss);
+}
+.glass::after {
+  content: ''; position: absolute; inset: 5px; pointer-events: none;
+  border: 1px solid rgba(255,255,255,.22);
+  border-radius: calc(var(--glass-r, var(--radius-md)) - 5px);
+}
+.glass--lg { border-radius: var(--radius-lg); --glass-r: var(--radius-lg); }
+.glass--pill { border-radius: var(--radius-full); --glass-r: var(--radius-full); }
+.glass--strong {
+  background:
+    linear-gradient(160deg, rgba(255,255,255,.30), rgba(242,240,234,.10) 45%, rgba(21,22,10,.06)),
+    var(--glass-fill-strong);
+}
+.glass--dark {
+  background:
+    linear-gradient(160deg, rgba(255,255,255,.14), rgba(242,240,234,.04) 45%, rgba(21,22,10,.06)),
+    var(--glass-fill-dark);
+  border-color: rgba(255,255,255,.55);
+  color: var(--paper-light);
+  text-shadow: none;
+}
+.glass--sm {
+  -webkit-backdrop-filter: blur(var(--blur-sm)) saturate(1.1);
+  backdrop-filter: blur(var(--blur-sm)) saturate(1.1);
+}
+
+/* Фолбэк: нет backdrop-filter или слабое устройство — непрозрачный stone, та же кромка и тени */
+html.no-glass .glass,
+html.no-glass .btn {
+  -webkit-backdrop-filter: none !important; backdrop-filter: none !important;
+  background: var(--stone) !important;
+}
+html.no-glass .glass--dark,
+html.no-glass .btn--dark { background: var(--ink-muted) !important; } /* ближайший тёмный из системы */
+html.no-glass .btn--primary { background: var(--kraft) !important; }
+
+/* ---------- Материал: ХРОМ ---------- */
+.chrome-back {
+  background: linear-gradient(115deg, var(--chrome-light) 0%, var(--chrome-mid) 30%, var(--chrome-light) 52%, var(--chrome-mid) 78%, var(--chrome-shade) 100%);
+}
+.chrome-front {
+  background: linear-gradient(160deg, var(--chrome-light) 0%, var(--chrome-light) 18%, var(--chrome-mid) 46%, var(--chrome-light) 70%, var(--chrome-mid) 100%);
+  box-shadow: var(--shadow-chrome);
+}
+.engrave { color: var(--ink); text-shadow: var(--text-emboss); }
+
+/* ---------- Раскладка ---------- */
+.container {
+  width: 100%; max-width: var(--content-max); margin-inline: auto;
+}
+
+/* ---------- reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 1ms !important; animation-iteration-count: 1 !important;
+    transition-property: opacity !important; transition-duration: 200ms !important;
+  }
+}

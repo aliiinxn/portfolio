@@ -1,0 +1,92 @@
+.cover { display: grid; }
+.cover__desk { display: grid; place-items: center; height: 100%; }
+
+.dossier {
+  position: relative; isolation: isolate;
+  width: min(100%, 1000px, calc((100vh - 2 * var(--sheet-inset) - 2 * var(--sheet-pad)) * 1.5));
+  aspect-ratio: 3 / 2;
+  padding: var(--space-7);
+  background: var(--kraft);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lifted);
+  color: var(--paper-light);
+  transform: rotate(-1deg);
+}
+.dossier__fields { display: grid; gap: var(--space-3); max-width: 62%; }
+.dossier__dl { display: grid; gap: var(--space-1); margin: 0; }
+.dossier__dl div { display: flex; flex-wrap: wrap; gap: 0 var(--space-2); }
+.dossier__dl dt { opacity: 1; }
+.dossier__dl dd { margin: 0; }
+.dossier__fields > p { padding-bottom: var(--space-2); border-bottom: 1px solid rgba(242,240,234,.35); width: max-content; }
+
+.dossier__stamp { position: absolute; top: var(--space-6); right: var(--space-9); }
+
+.dossier__title {
+  position: absolute; left: var(--space-7); bottom: var(--space-7);
+  display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-2);
+  color: var(--paper-light);
+}
+/* На плашке highlight (sand .6 поверх kraft) paper-light даёт ~2.98:1 — ниже AA.
+   Поэтому выделенное слово — --ink (≈5.4:1). Ближайшее решение в рамках системы. */
+.dossier__sel .t-display { color: var(--ink); }
+/* Линии и ручки рамки kraft на kraft-обложке не видны — берём --paper-light (как печати на обложке). */
+.dossier__sel { --sel-line: var(--paper-light); }
+
+.dossier__window {
+  position: absolute; right: var(--space-9); bottom: var(--space-7);
+  width: clamp(140px, 20%, 210px); aspect-ratio: 1;
+  border-radius: var(--radius-md); overflow: hidden;
+  box-shadow: var(--shadow-paper);
+  background: var(--stone);
+}
+.dossier__window img {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+  opacity: 0; transform: scale(1.06);
+  transition: opacity 900ms var(--ease-out), transform 3000ms linear;
+}
+.dossier__window img.is-on { opacity: 1; transform: scale(1); }
+.dossier__window-glass { position: absolute; inset: 0; border-radius: var(--radius-md); }
+
+.dossier__clasp {
+  position: absolute; right: calc(-1 * var(--space-4)); top: 50%;
+  display: flex; align-items: center;
+  transform: translateY(-50%);
+}
+.dossier__strap {
+  position: absolute; right: 0; top: 50%; transform: translateY(-50%);
+  width: 132px; height: 44px;
+  background: var(--ink); border-radius: var(--radius-full) var(--radius-sm) var(--radius-sm) var(--radius-full);
+  box-shadow: var(--shadow-paper);
+}
+.dossier__clasp .btn { position: relative; margin-right: 76px; }
+
+.cover__hint {
+  position: absolute; left: 50%; bottom: var(--space-5); transform: translateX(-50%);
+  color: var(--ink-muted);
+}
+
+@media (max-width: 1199px) {
+  .dossier { padding: var(--space-6); }
+  .dossier__title { left: var(--space-6); bottom: var(--space-6); }
+  .dossier__window { right: var(--space-8); bottom: var(--space-6); width: 132px; }
+  /* планшет: промежуточный кегль между 96 и 48 (не новый токен — интерполяция шкалы h1) */
+  .dossier__title .t-h1, .dossier__title .t-display { font-size: clamp(48px, 7.2vw, 96px); }
+  .dossier__stamp { right: var(--space-8); top: var(--space-5); width: 104px; height: 104px; }
+}
+
+@media (max-width: 767px) {
+  .cover__desk { place-items: start center; }
+  .dossier {
+    aspect-ratio: auto; width: 100%; min-height: 560px;
+    padding: var(--space-5) var(--space-5);
+    transform: rotate(-.5deg);
+  }
+  .dossier__fields { max-width: 100%; padding-right: 84px; }
+  .dossier__stamp { top: var(--space-4); right: var(--space-4); width: 80px; height: 80px; }
+  .dossier__title { left: var(--space-5); bottom: calc(var(--space-5) + 120px); }
+  .dossier__window { right: auto; left: var(--space-5); bottom: var(--space-5); width: 96px; }
+  .dossier__clasp { top: auto; bottom: calc(var(--space-5) + 24px); transform: translateY(50%); right: calc(-1 * var(--space-3)); }
+  .dossier__strap { width: 96px; }
+  .dossier__clasp .btn { margin-right: 44px; }
+  .cover__hint { display: none; }
+}

@@ -1,0 +1,31 @@
+{
+  "num": "03",
+  "title": "[Оформление соцсетей бренда одежды]",
+  "category": "Соцсети",
+  "year": "2025",
+  "featured": true,
+  "previews": [
+    "/works/p3-prev-1.svg",
+    "/works/p3-prev-2.svg",
+    "/works/p3-prev-3.svg"
+  ],
+  "main": "/works/p3-main.svg",
+  "fonts": "[Montserrat]",
+  "colors": [
+    "#B5A892",
+    "#15160A",
+    "#F2F0EA",
+    "#4E3F2E"
+  ],
+  "grid": "[3 колонки ленты]",
+  "task": "[Единый стиль ленты и сторис, чтобы аккаунт узнавали с первого взгляда]",
+  "result": "[Шаблоны постов и сторис, обложки highlights]",
+  "badge": "[+25% подписчиков]",
+  "gallery": [
+    "/works/p3-gal-1.svg",
+    "/works/p3-gal-2.svg",
+    "/works/p3-gal-3.svg",
+    "/works/p3-gal-4.svg"
+  ],
+  "description": "[Коротко о проекте: какие шаблоны сделаны и как клиент ими пользуется.]"
+}

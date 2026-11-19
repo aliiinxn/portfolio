@@ -1,0 +1,26 @@
+html.has-cursor, html.has-cursor a, html.has-cursor button { cursor: none; }
+.cursor { position: fixed; left: 0; top: 0; z-index: 400; pointer-events: none; transition: opacity 200ms; }
+.cursor__dot {
+  position: absolute; left: -4px; top: -4px; width: 8px; height: 8px;
+  border-radius: var(--radius-full); background: var(--kraft);
+  transition: transform 200ms var(--ease-out), opacity 200ms;
+}
+.cursor__glass {
+  position: absolute; left: -24px; top: -24px; width: 48px; height: 48px;
+  border-radius: var(--radius-full);
+  background: linear-gradient(160deg, rgba(255,255,255,.30), rgba(242,240,234,.10) 45%, rgba(21,22,10,.06)), var(--glass-fill);
+  -webkit-backdrop-filter: blur(var(--blur-sm)); backdrop-filter: blur(var(--blur-sm));
+  border: 1px solid var(--glass-edge); box-shadow: var(--shadow-glass-thick);
+  transform: scale(.2); opacity: 0;
+  transition: transform 260ms var(--ease-out), opacity 200ms var(--ease-out);
+}
+.cursor__label {
+  position: absolute; left: 32px; top: -9px; white-space: nowrap;
+  padding: 2px var(--space-2); border-radius: var(--radius-sm);
+  background: var(--paper-light); color: var(--ink); box-shadow: var(--shadow-paper);
+  opacity: 0; transform: translateX(-6px); transition: opacity 200ms, transform 260ms var(--ease-out);
+}
+.cursor--ring .cursor__glass, .cursor--open .cursor__glass { transform: scale(1); opacity: 1; }
+.cursor--ring .cursor__dot, .cursor--open .cursor__dot { transform: scale(.75); }
+.cursor--open .cursor__label { opacity: 1; transform: none; }
+.cursor--dot .cursor__glass { visibility: hidden; } /* не держать лишний слой backdrop-filter */

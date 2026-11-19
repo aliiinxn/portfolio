@@ -1,0 +1,91 @@
+/* =====================================================
+   «Творческое досье» — дизайн-токены.
+   Значения 1:1 из дизайн-системы. Новые значения не добавлять.
+   ===================================================== */
+:root {
+  /* Цвет — палитра */
+  --ink: #15160A;
+  --kraft: #6F5B42;
+  --sand: #B5A892;
+  --stone: #BEBBB4;
+  --paper: #D2D2D1;
+  /* Цвет — производные для читаемости */
+  --ink-muted: #3F3B2E;
+  --kraft-deep: #4E3F2E;
+  --paper-light: #F2F0EA;
+  --highlight: rgba(181,168,146,.6);
+  --glass-fill: rgba(210,210,209,.38);
+  --glass-fill-strong: rgba(242,240,234,.72);
+  --glass-fill-dark: rgba(21,22,10,.42);
+  --glass-border: rgba(242,240,234,.55);
+  --glass-kraft: rgba(111,91,66,.9);
+  --glass-edge: rgba(255,255,255,.85);
+  --glass-edge-shade: rgba(21,22,10,.28);
+  --chrome-light: #F7F6F3;
+  --chrome-mid: #A9A7A1;
+  --chrome-shade: #6E6C67;
+  --hole: rgba(21,22,10,.72);
+  --hairline: rgba(21,22,10,.18);
+
+  /* Шрифты */
+  --font-heading: "Montserrat", system-ui, sans-serif;
+  --font-body: "Inter", "Helvetica Neue", Arial, sans-serif;
+  --font-hand: "Caveat", cursive;
+
+  /* Отступы (шаг 4px) */
+  --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px; --space-5: 24px;
+  --space-6: 32px; --space-7: 48px; --space-8: 64px; --space-9: 96px; --space-10: 128px;
+
+  /* Скругления */
+  --radius-xs: 2px;
+  --radius-sm: 6px;
+  --radius-md: 14px;
+  --radius-lg: 24px;
+  --radius-full: 9999px;
+
+  /* Тени */
+  --shadow-paper: 0 1px 2px rgba(21,22,10,.10), 0 6px 18px rgba(111,91,66,.16);
+  --shadow-lifted: 0 2px 4px rgba(21,22,10,.12), 0 18px 40px rgba(111,91,66,.26);
+  --shadow-glass: 0 8px 32px rgba(21,22,10,.18), inset 0 1px 0 rgba(242,240,234,.5);
+  --shadow-ring: 2px 3px 4px rgba(21,22,10,.35);
+  --shadow-hole: inset 1px 2px 3px rgba(21,22,10,.6);
+  --shadow-glass-thick: inset 0 1.5px 0 rgba(255,255,255,.85), inset 1.5px 0 0 rgba(255,255,255,.35), inset 0 -2px 0 rgba(21,22,10,.28), inset 0 0 0 4px rgba(242,240,234,.12), 0 10px 28px rgba(21,22,10,.22), 0 2px 4px rgba(21,22,10,.12);
+  --shadow-chrome: inset 0 2px 0 rgba(255,255,255,.9), inset 0 -3px 0 rgba(21,22,10,.25), 0 14px 30px rgba(21,22,10,.25), 0 3px 6px rgba(21,22,10,.15);
+  --text-emboss: 0 1px 0 rgba(255,255,255,.6);
+
+  /* Размытие */
+  --blur-sm: 8px; --blur-md: 18px; --blur-lg: 28px;
+
+  /* Размеры */
+  --rings-zone: 72px;
+  --ring-size: 28px;
+  --hole-size: 14px;
+  --content-max: 1200px;
+
+  /* Движение */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-flip: cubic-bezier(0.65, 0, 0.35, 1);
+
+  /* ---- Служебные (производные от токенов, не новые значения) ---- */
+  --rings-count: 6;
+  --gutter: var(--space-5);       /* 24px */
+  --sheet-pad: var(--space-8);    /* поля листа 64px */
+  --sheet-inset: var(--space-3);  /* отступ листа от края экрана */
+}
+
+/* Планшет */
+@media (max-width: 1199px) {
+  :root { --sheet-pad: var(--space-6); }
+}
+
+/* Мобайл: кольца сверху полосой 48px */
+@media (max-width: 767px) {
+  :root {
+    --rings-zone: 48px;
+    --ring-size: 20px;
+    --hole-size: 10px;
+    --rings-count: 4;
+    --gutter: var(--space-4);
+    --sheet-pad: var(--space-4);
+  }
+}

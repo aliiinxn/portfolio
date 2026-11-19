@@ -1,0 +1,32 @@
+{
+  "num": "05",
+  "title": "[Айдентика юридической практики]",
+  "category": "Айдентика",
+  "year": "2025",
+  "featured": true,
+  "previews": [
+    "/works/p5-prev-1.svg",
+    "/works/p5-prev-2.svg",
+    "/works/p5-prev-3.svg"
+  ],
+  "main": "/works/p5-main.svg",
+  "fonts": "[Montserrat / Inter]",
+  "colors": [
+    "#6F5B42",
+    "#F2F0EA",
+    "#4E3F2E",
+    "#BEBBB4",
+    "#15160A"
+  ],
+  "grid": "[8 колонок]",
+  "task": "[Строгий, но тёплый стиль, которому доверяют]",
+  "result": "[Знак, визитки, шаблоны документов и презентации]",
+  "badge": "[Ребрендинг за 3 недели]",
+  "gallery": [
+    "/works/p5-gal-1.svg",
+    "/works/p5-gal-2.svg",
+    "/works/p5-gal-3.svg",
+    "/works/p5-gal-4.svg"
+  ],
+  "description": "[Коротко о проекте: какие носители сделаны и как стиль работает в документах.]"
+}

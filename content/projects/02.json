@@ -1,0 +1,31 @@
+{
+  "num": "02",
+  "title": "[Лендинг для психолога]",
+  "category": "Веб-дизайн",
+  "tab": "Веб",
+  "year": "2026",
+  "featured": true,
+  "previews": [
+    "/works/p2-prev-1.svg",
+    "/works/p2-prev-2.svg",
+    "/works/p2-prev-3.svg"
+  ],
+  "main": "/works/p2-main.svg",
+  "fonts": "[Montserrat / Inter]",
+  "colors": [
+    "#BEBBB4",
+    "#4E3F2E",
+    "#15160A"
+  ],
+  "grid": "[12 колонок, поля 64px]",
+  "task": "[Спокойный сайт, после которого хочется записаться на консультацию]",
+  "result": "[Сайт из 6 блоков, форма записи, адаптив под телефон]",
+  "badge": "[×2 заявок]",
+  "gallery": [
+    "/works/p2-gal-1.svg",
+    "/works/p2-gal-2.svg",
+    "/works/p2-gal-3.svg",
+    "/works/p2-gal-4.svg"
+  ],
+  "description": "[Коротко о проекте: структура, ключевые решения, что изменилось для клиента после запуска.]"
+}
