@@ -10,9 +10,10 @@ npm run build    # сборка в dist/
 ```
 
 ## Админка (без кода)
-Сайт на Netlify, контент — в `content/`. Откройте `https://<ваш-сайт>.netlify.app/admin`, войдите через GitHub,
+Сайт на Netlify, контент — в `content/`. Откройте `https://alina-gasevskaya.netlify.app/admin`, войдите,
 поменяйте тексты/проекты/картинки и нажмите «Опубликовать». Netlify пересоберёт сайт за 1–2 минуты.
-Настройки админки — `public/admin/config.yml` (строка `repo:` — ваш логин/репозиторий).
+Вход — по почте и паролю (Netlify Identity + Git Gateway, регистрация только по приглашению).
+Настройки админки — `public/admin/config.yml`.
 
 ## Где что менять (вручную)
 - `content/projects/*.json` — проекты (один файл = один проект). Картинки — в `public/uploads/` (WebP, ~1600×1000).

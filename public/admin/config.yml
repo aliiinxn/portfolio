@@ -1,7 +1,6 @@
-# Админка сайта. Вход — через GitHub.
+# Админка сайта. Вход — по почте и паролю (Netlify Identity + Git Gateway).
 backend:
-  name: github
-  repo: GITHUB_USER/portfolio   # ← заменить на ваш логин/репозиторий
+  name: git-gateway
   branch: main
   commit_messages:
     update: 'Правка: {{slug}}'

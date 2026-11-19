@@ -18,6 +18,12 @@
   </head>
   <body>
     <div id="root"></div>
+    <script>
+      // Ссылки из писем Netlify (приглашение, сброс пароля) ведут на главную — переправляем их в админку.
+      if (/(invite|recovery|confirmation|email_change)_token=/.test(location.hash)) {
+        location.replace('/admin/' + location.hash);
+      }
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
